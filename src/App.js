@@ -17,11 +17,54 @@ class App extends Component {
     cartList: [],
   }
 
-  //   TODO: Add your code for remove all cart items, increment cart item quantity, decrement cart item quantity, remove cart item
+  removeAllCartItems = () => {
+    this.setState({cartList: []})
+  }
+
+  removeCartItem = id => {
+    const {cartList} = this.state
+    const filteredCartList = cartList.filter(eachItem => eachItem.id !== id)
+    this.setState({cartList: filteredCartList})
+  }
+
+  incrementCartItemQuantity = id => {
+    const {cartList} = this.state
+    const increasedQuantity = cartList.map(eachItem => {
+      if (eachItem.id === id) {
+        return {...eachItem, quantity: eachItem.quantity + 1}
+      }
+      return eachItem
+    })
+
+    this.setState({cartList: increasedQuantity})
+  }
+
+  decrementCartItemQuantity = id => {
+    const {cartList} = this.state
+    const decreasedQuantity = cartList
+      .map(eachItem => {
+        if (eachItem.id === id) {
+          if (eachItem.quantity > 1) {
+            return {...eachItem, quantity: eachItem.quantity - 1}
+          }
+          return null
+        }
+        return eachItem
+      })
+      .filter(eachItem => eachItem !== null)
+
+    this.setState({cartList: decreasedQuantity})
+  }
 
   addCartItem = product => {
-    this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
-    //   TODO: Update the code here to implement addCartItem
+    const {cartList} = this.state
+    if (cartList.find(eachItem => product.id === eachItem.id) !== undefined) {
+      this.incrementCartItemQuantity(product.id)
+    } else {
+      this.setState(prevState => ({
+        cartList: [...prevState.cartList, product],
+      }))
+    }
   }
 
   render() {
@@ -31,8 +74,11 @@ class App extends Component {
       <CartContext.Provider
         value={{
           cartList,
+          removeAllCartItems: this.removeAllCartItems,
           addCartItem: this.addCartItem,
           removeCartItem: this.removeCartItem,
+          incrementCartItemQuantity: this.incrementCartItemQuantity,
+          decrementCartItemQuantity: this.decrementCartItemQuantity,
         }}
       >
         <Switch>
