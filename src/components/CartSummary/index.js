@@ -17,11 +17,13 @@ const CartSummary = () => (
       return (
         <div className="cart-summary-container">
           <div className="cart-summary-main-container">
-            <h3 className="order-total">
-              Order Total:{' '}
-              <span className="order-total-value">{orderTotal}/-</span>
-            </h3>
-            <p className="order-items">{orderItems} items in cart</p>
+            <div className="order-detail">
+              <h3 className="order-total">
+                Order Total:{' '}
+                <span className="order-total-value">{orderTotal}/-</span>
+              </h3>
+              <p className="order-items">{orderItems} items in cart</p>
+            </div>
             <button className="checkout-btn">Checkout</button>
           </div>
         </div>

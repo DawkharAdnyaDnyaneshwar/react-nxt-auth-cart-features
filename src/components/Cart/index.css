@@ -37,4 +37,11 @@
   }
 }
 
-/* Write your CSS here */
+.remove-all-btn {
+  align-self: flex-end;
+  border: none;
+  color:  #0b69ff;
+  font-size: 14px;
+  background-color: transparent;
+  font-weight: 600;
+}

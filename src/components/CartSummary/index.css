@@ -1,1 +1,43 @@
-/* Write your CSS here */
+@media all and (min-width: 768px) {
+  .cart-summary-container {
+    align-self: flex-end;
+  }
+}
+
+.cart-summary-main-container {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto';
+}
+
+.order-detail {
+  align-self: flex-end;
+}
+
+.order-total {
+  color: #616e7c;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 0px;
+}
+
+.order-total-value {
+  color: #171f46;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.order-items {
+  margin-top: 0px;
+  color: #616e7c;
+  font-size: 16px;
+}
+
+.checkout-btn {
+  background-color: #0b69ff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: #ffffff;
+  font-size: 12px;
+}
