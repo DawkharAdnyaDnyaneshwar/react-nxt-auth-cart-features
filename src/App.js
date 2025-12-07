@@ -58,8 +58,14 @@ class App extends Component {
 
   addCartItem = product => {
     const {cartList} = this.state
-    if (cartList.find(eachItem => product.id === eachItem.id) !== undefined) {
-      this.incrementCartItemQuantity(product.id)
+    if (cartList.find(eachItem => product.id === eachItem.id)) {
+      this.setState(prevState => ({
+        cartList: prevState.cartList.map(eachItem =>
+          eachItem.id === product.id
+            ? {...eachItem, quantity: eachItem.quantity + product.quantity}
+            : eachItem,
+        ),
+      }))
     } else {
       this.setState(prevState => ({
         cartList: [...prevState.cartList, product],
